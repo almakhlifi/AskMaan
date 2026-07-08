@@ -12,6 +12,8 @@ AskMaan is my personal website, built as an AI chatbot instead of a static portf
 - Adapts its reply format to the question: short prose, bullet points, or numbered lists, with key facts bolded
 - Stays on-topic and resists prompt-injection attempts through layered defenses
 - Speaks both English and Arabic, with a one-tap language toggle in the header. The Arabic side has the exact same knowledge, rules, and way of talking
+- Opens with a cinematic intro animation: "AskMaan" fades in over a dark screen, then reveals the chat
+- A live status dot in the header shows green "online" when Twin is reachable and red "offline" when the API is down
 
 Twin is still learning and is still being fed information, so it keeps getting better over time.
 
@@ -44,6 +46,7 @@ Browser (askmaan.dev)  →  Cloudflare Worker  →  Gemini API
 ## Repo contents
 
 - `index.html`: the entire site
+- `Favicon/`: site icons for every platform (Safari, Chrome, iOS, Android) plus the web manifest
 - `banner.png`: the README banner
 - `CNAME`: custom domain config for GitHub Pages
 - `README.md`: this file
