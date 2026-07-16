@@ -1,13 +1,46 @@
 <!DOCTYPE html>
+<!-- Author: Maan Almakhlifi -->
 <html>
 <head>
   <meta charset="utf-8">
   <title>AskMaan</title>
+  <link rel="icon" href="/Favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Favicon/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/Favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/Favicon/android-chrome-256x256.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/Favicon/site.webmanifest">
+  <meta name="theme-color" content="#0A0A0B">
+  <meta name="description" content="Maan's digital twin. Ask about his background, projects, and skills.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AskMaan">
+  <meta property="og:title" content="AskMaan">
+  <meta property="og:description" content="Maan's digital twin. Ask about his background, projects, and skills.">
+  <meta property="og:url" content="https://askmaan.dev/">
+  <meta property="og:image" content="https://askmaan.dev/og-image.png?v=1">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AskMaan, meet Maan’s digital twin">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AskMaan">
+  <meta name="twitter:description" content="Maan's digital twin. Ask about his background, projects, and skills.">
+  <meta name="twitter:image" content="https://askmaan.dev/og-image.png?v=1">
+  <link rel="preload" href="fonts/thmanyahserifdisplay-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: 'Thmanyah Serif Display'; src: url('fonts/thmanyahserifdisplay-Bold.woff2') format('woff2'); font-weight: 700; font-display: block; }
+    @keyframes __introZoom {
+      0% { transform: scale(0.82); opacity: 0; filter: blur(6px); }
+      18% { opacity: 1; filter: blur(0); }
+      70% { transform: scale(1.0); opacity: 1; }
+      100% { transform: scale(1.18); opacity: 0; filter: blur(2px); }
+    }
+  </style>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #faf9f5; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
-    #__bundler_loading { position: fixed; bottom: 20px; right: 20px; font: 13px/1.4 -apple-system, BlinkMacSystemFont, sans-serif; color: #666; background: #fff; padding: 8px 14px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.12); z-index: 10000; }
-    #__bundler_thumbnail { position: fixed; inset: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #faf9f5; z-index: 9999; }
+    body { background: #0A0A0B; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+    #__bundler_loading { position: fixed; bottom: 20px; right: 20px; font: 13px/1.4 -apple-system, BlinkMacSystemFont, sans-serif; color: #55555A; background: #111113; border: 1px solid #1D1D1F; padding: 8px 14px; border-radius: 8px; z-index: 10000; }
+    #__bundler_thumbnail { position: fixed; inset: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #0A0A0B; z-index: 9999; }
     #__bundler_thumbnail svg { width: 100%; height: 100%; object-fit: contain; }
     #__bundler_placeholder { color: #999; font-size: 14px; }
   </style>
@@ -19,10 +52,29 @@
   </noscript>
 </head>
 <body>
-  <div id="__bundler_thumbnail">
-  <svg xmlns="http://www.w3.org/2000/svg" sc-camel-view-box="0 0 100 100"><rect width="100" height="100" fill="#0A0A0B"></rect></svg>
-</div>
+  <div id="__bundler_thumbnail"></div>
   <div id="__bundler_loading">Unpacking...</div>
+  <script>
+  (function () {
+    window.__introStart = performance.now();
+    var p = {}; try { p = JSON.parse(localStorage.getItem("askmaan-prefs") || "{}"); } catch (e) {}
+    var dark = p.mode !== "light", ar = p.lang === "ar";
+    var bg = dark ? "#0A0A0B" : "#F4F3F0", fg = dark ? "#F0F0EE" : "#171716";
+    var glow = dark ? "0 0 60px rgba(240,240,238,0.25)" : "0 0 60px rgba(23,23,22,0.15)";
+    document.documentElement.style.background = bg;
+    document.body.style.background = bg;
+    var el = document.getElementById("__bundler_thumbnail");
+    el.style.background = bg;
+    var w = document.createElement("div");
+    w.textContent = ar ? "\u0627\u0633\u0623\u0644 \u0645\u0639\u0646" : "AskMaan";
+    w.style.cssText = "font-family:'Thmanyah Serif Display',Georgia,serif;font-weight:700;font-size:clamp(64px,12vw,150px);color:" + fg + ";letter-spacing:-0.01em;text-shadow:" + glow + ";animation:__introZoom 1.8s cubic-bezier(0.3,0,0.2,1) forwards";
+    el.appendChild(w);
+    if (!dark) {
+      var l = document.getElementById("__bundler_loading");
+      if (l) l.style.cssText += ";background:#FFFFFF;border-color:#E3E1DC;color:#A5A49E";
+    }
+  })();
+  </script>
 
   <script>
     
