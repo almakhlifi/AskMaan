@@ -13,7 +13,7 @@ AskMaan is my personal website, built as an AI chatbot instead of a static portf
 - Stays on-topic and resists prompt-injection attempts through layered defenses
 - Speaks both English and Arabic, with a one-tap language toggle in the header. The Arabic side has the exact same knowledge, rules, and way of talking
 - Opens with a cinematic intro animation: "AskMaan" fades in over a dark screen, then reveals the chat
-- A live status dot in the header shows green "online" when Twin is reachable and red "offline" when the API is down
+- A live status dot in the header shows green "online" when Twin is reachable and yellow "connecting" when the API is down and it's reconnecting
 
 Twin is still learning and is still being fed information, so it keeps getting better over time.
 
