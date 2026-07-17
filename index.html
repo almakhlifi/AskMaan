@@ -53,7 +53,6 @@
 </head>
 <body>
   <div id="__bundler_thumbnail"></div>
-  <div id="__bundler_loading">Unpacking...</div>
   <script>
   (function () {
     window.__introStart = performance.now();
@@ -101,13 +100,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         e.target.tagName, String(e.target.src || e.target.href || ''));
       return;
     }
-    var p = document.body || document.documentElement;
-    var d = document.getElementById('__bundler_err') || p.appendChild(document.createElement('div'));
-    d.id = '__bundler_err';
-    d.style.cssText = 'position:fixed;bottom:12px;left:12px;right:12px;font:12px/1.4 ui-monospace,monospace;background:#2a1215;color:#ff8a80;padding:10px 14px;border-radius:8px;border:1px solid #5c2b2e;z-index:99999;white-space:pre-wrap;max-height:40vh;overflow:auto';
-    d.textContent = (d.textContent ? d.textContent + String.fromCharCode(10) : '') +
-      '[bundle] ' + (e.message || e.type) +
-      (e.filename ? ' (' + e.filename.slice(0, 60) + ':' + e.lineno + ')' : '');
+    console.error('[bundle]', e.message || e.type, e.filename || '', e.lineno || '');
   }, true);
 
   try {
@@ -213,7 +206,29 @@ document.addEventListener('DOMContentLoaded', async function() {
     // createElement so they execute, awaiting onload for src scripts to
     // preserve ordering (React before ReactDOM before Babel before text/babel).
     const doc = new DOMParser().parseFromString(template, 'text/html');
+    var __prefs2 = {}; try { __prefs2 = JSON.parse(localStorage.getItem('askmaan-prefs') || '{}'); } catch (e) {}
+    var __dark2 = __prefs2.mode !== 'light', __ar2 = __prefs2.lang === 'ar';
+    var __bg2 = __dark2 ? '#0A0A0B' : '#F4F3F0', __fg2 = __dark2 ? '#F0F0EE' : '#171716';
+    doc.documentElement.style.background = __bg2;
+    if (doc.body) doc.body.style.background = __bg2;
     document.documentElement.replaceWith(doc.documentElement);
+    (function () {
+      var t0 = (typeof window.__introStart === 'number') ? window.__introStart : performance.now();
+      var el2 = Math.min(1800, Math.max(0, performance.now() - t0));
+      if (el2 >= 1800) return;
+      var dl = '-' + (el2 / 1000).toFixed(3) + 's';
+      var c = document.createElement('div');
+      c.id = '__intro_carry';
+      c.style.cssText = 'position:fixed;inset:0;z-index:9998;background:' + __bg2 + ';display:flex;align-items:center;justify-content:center;animation:__cOut 1.8s ease ' + dl + ' forwards;pointer-events:none';
+      var st = document.createElement('style');
+      st.textContent = "@font-face{font-family:'Thmanyah Serif Display';src:url('fonts/thmanyahserifdisplay-Bold.woff2') format('woff2');font-weight:700;font-display:block}@keyframes __cZoom{0%{transform:scale(0.82);opacity:0;filter:blur(6px)}18%{opacity:1;filter:blur(0)}70%{transform:scale(1.0);opacity:1}100%{transform:scale(1.18);opacity:0;filter:blur(2px)}}@keyframes __cOut{0%{opacity:1}82%{opacity:1}100%{opacity:0}}";
+      var w2 = document.createElement('div');
+      w2.textContent = __ar2 ? '\u0627\u0633\u0623\u0644 \u0645\u0639\u0646' : 'AskMaan';
+      w2.style.cssText = "font-family:'Thmanyah Serif Display',Georgia,serif;font-weight:700;font-size:clamp(64px,12vw,150px);color:" + __fg2 + ';letter-spacing:-0.01em;text-shadow:0 0 60px ' + (__dark2 ? 'rgba(240,240,238,0.25)' : 'rgba(23,23,22,0.15)') + ';animation:__cZoom 1.8s cubic-bezier(0.3,0,0.2,1) ' + dl + ' forwards';
+      c.appendChild(st); c.appendChild(w2);
+      document.body.appendChild(c);
+      setTimeout(function () { var n = document.getElementById('__intro_carry'); if (n) n.remove(); }, Math.max(0, 1900 - el2));
+    })();
     const dead = Array.from(document.scripts);
     for (const old of dead) {
       const s = document.createElement('script');
